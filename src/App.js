@@ -1,6 +1,5 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 import './App.css';
 
 // navbar
@@ -16,7 +15,7 @@ function App() {
     <div className="App">
       <Navbar bg="dark" variant="dark">
           <Container>
-              <Navbar.Brand href="#beranda">Covid-19 Tracker</Navbar.Brand>
+              <Navbar.Brand href="#beranda"> World Covid-19 Tracker</Navbar.Brand>
                 <Nav className="me-auto">
                   <Nav.Link href="/" >Beranda</Nav.Link>
                   <Nav.Link href="/berita">Berita</Nav.Link>
