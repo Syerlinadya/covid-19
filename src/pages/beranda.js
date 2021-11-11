@@ -5,21 +5,15 @@ import "../App.css";
 
 import CardDeck from "react-bootstrap/CardGroup";
 import Card from "react-bootstrap/Card";
-import Table from 'react-bootstrap/Table'
 
 function Beranda() {
     const [latest, setLatest] = useState([]);
-    const [results, setResults] = useState([""]);
 
     useEffect(() => {
-        axios.all([
-            axios.get("https://corona.lmao.ninja/v3/covid-19/all"),
-            axios.get("https://corona.lmao.ninja/v3/covid-19/countries")
-        ])
+        axios.get("https://corona.lmao.ninja/v3/covid-19/countries")
         
         .then(resArr => {
-            setLatest(resArr[0].data);
-            setResults(resArr[1].data);
+            setLatest(resArr.data);
         })
         .catch(err => {
             console.log(err);
@@ -27,22 +21,6 @@ function Beranda() {
     }, []);
 
     const latestUpdated = moment().format('YYYY-MM-DD');
-
-    const countries = results.map((data, idx) => {
-        return(
-            <tr key={idx}>
-                <td>{idx+1}</td>
-                <td>{data.country}</td>
-                <td>{data.cases}</td>
-                <td>{data.todayCases}</td>
-                <td>{data.active}</td>
-                <td>{data.recovered}</td>
-                <td>{data.todayRecovered}</td>
-                <td>{data.deaths}</td>
-                <td>{data.todayDeaths}</td>
-            </tr>
-        )
-    })
     return (
         <div>
             <CardDeck>
@@ -89,27 +67,6 @@ function Beranda() {
                     </Card.Footer>
                 </Card>
             </CardDeck>
-            <Card bg="primary" text={"white"} style={{margin:"20px"}}>
-                <Card.Header as="h5">Data Kasus Covid-19 Seluruh Dunia</Card.Header>
-            </Card>
-            <Table striped bordered hover size="sm" className="align-items-center" style={{margin:"20px", width:"1300px"}}>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Negara</th>
-                        <th>Total Terkonfirmasi</th>
-                        <th>Penambahan Kasus</th>
-                        <th>Kasus Aktif</th>
-                        <th>Total Kesembuhan</th>
-                        <th>Penambahan Kesembuhan</th>
-                        <th>Total Kematian</th>
-                        <th>Penambahan Kematian</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {countries}
-                </tbody>
-            </Table>
         </div>
     )
 }
