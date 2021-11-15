@@ -18,7 +18,6 @@ function App() {
               <Navbar.Brand href="#beranda">Covid-19 Tracker</Navbar.Brand>
                 <Nav className="me-auto">
                   <Nav.Link href="/" >Beranda</Nav.Link>
-                  <Nav.Link href="/sebaran">Sebaran</Nav.Link>
                   <Nav.Link href="/informasi">Informasi</Nav.Link>
                 </Nav>
           </Container>
